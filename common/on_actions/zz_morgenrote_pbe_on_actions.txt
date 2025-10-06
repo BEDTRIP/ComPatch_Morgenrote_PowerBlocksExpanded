@@ -1,0 +1,116 @@
+# source: PRIMARY_LABEL:mr_on_actions.txt | SECONDARY_LABEL:kates_power_bloc_on_actions.txt
+# change: merged; order: MR-first; объединены конфликтующие on_actions блоки
+on_monthly_pulse_country = {
+	on_actions = {
+		mr_on_monthly_pulse_country
+		kates_dynamic_modifier_on_action
+		delay = { days = 7 }
+		kates_dynamic_modifier_on_action
+		delay = { days = 14 }
+		kates_dynamic_modifier_on_action
+		delay = { days = 21 }
+		kates_dynamic_modifier_on_action
+	}
+}
+
+mr_on_monthly_pulse_country = {
+	events = {
+		mr.1 #Check new AI countries for variables
+	}
+	effect = {
+		if = {
+			limit = {
+				c:PRC ?= this
+				NOT = { has_variable = mr_paris_commune_variables_copied_var }
+				exists = c:FRA
+			}
+			mr_copy_percentage_of_variables_commune_effect = yes
+		}
+	}
+}
+
+# source: PRIMARY_LABEL:mr_on_actions.txt | SECONDARY_LABEL:kates_power_bloc_on_actions.txt
+# change: merged; order: MR-first; объединены конфликтующие on_actions блоки
+on_monthly_pulse = {
+	on_actions = {
+		mr_on_monthly_pulse
+		mr_on_weekly_pulse
+		kates_weekly_global_on_action
+		delay = { days = 7 }
+		kates_weekly_global_on_action
+		delay = { days = 14 }
+		kates_weekly_global_on_action
+		delay = { days = 21 }
+		kates_weekly_global_on_action
+	}
+}
+
+mr_on_monthly_pulse = {
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					is_target_in_global_variable_list = {
+						name = custom_button_list_flag
+						target = flag:mr_sidebar_button_arts_sgui
+					}
+				}
+			}
+			mr_add_button_to_community_framework_effect = yes
+			remove_list_global_variable = {
+				name = custom_button_list
+				target = ideology:mr_sidebar_button_arts_sgui
+			}
+		}
+	}
+}
+
+mr_on_weekly_pulse = {
+	effect = {
+		com_run_weekly_event_country_effect = {
+			weekday = 1
+			on_action = mr_on_weekly_pulse_character_deaths
+		}
+	}
+}
+
+kates_dynamic_modifier_on_action = {
+	effect = {
+		kates_dynamic_modifier_handler = yes
+	}
+}
+
+kates_weekly_global_on_action = {
+	effect = {
+		kates_weekly_global_handler = yes
+	}
+}
+
+# source: PRIMARY_LABEL:kates_power_bloc_on_actions.txt | SECONDARY_LABEL:mr_on_actions.txt
+# change: merged; order: MR-first; объединены конфликтующие on_actions блоки
+on_diplomatic_play_started = {
+	on_actions = {
+		kates_power_bloc_revolution_on_action
+	}
+}
+
+kates_power_bloc_revolution_on_action = {
+	effect = {
+		kates_power_bloc_revolution_effect = yes
+	}
+}
+
+# source: PRIMARY_LABEL:kates_power_bloc_on_actions.txt | SECONDARY_LABEL:mr_on_actions.txt
+# change: merged; order: MR-first; объединены конфликтующие on_actions блоки
+on_wargoal_enforced = {
+	on_actions = {
+		kates_power_bloc_holy_war_enforced_on_action
+	}
+}
+
+kates_power_bloc_holy_war_enforced_on_action = {
+	effect = {
+		kates_power_bloc_holy_war_enforced_effect = yes
+	}
+}
+
