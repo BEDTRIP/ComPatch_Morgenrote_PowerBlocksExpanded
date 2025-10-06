@@ -1,0 +1,12 @@
+﻿l_english:
+  # Localizations for Power Blocks Expanded diplomatic actions (corrected to match original keys)
+  kates_foreign_investment_agreement_action_notification_name: "Investment Agreement"
+  kates_foreign_investment_agreement_action_notification_desc: "Proposal of an investment agreement from [COUNTRY.GetName]."
+  kates_foreign_investment_agreement_action_propose_name: "Propose Investment Agreement"
+  kates_foreign_investment_agreement_action_break_name: "Break Investment Agreement"
+  kates_foreign_investment_agreement_action_notification_break_name: "Investment Agreement Broken"
+  kates_foreign_investment_agreement_action_notification_break_desc: "[COUNTRY.GetName] broke the investment agreement with us."
+
+  # Локализации для взаимодействий персонажей и holy_war
+  zz_mr_pbe_holy_war_character_bonus_desc: "Characters influence holy wars, increasing support for claims and reducing the cost of diplomatic plays."
+  zz_mr_pbe_character_diplomacy_bonus_desc: "Characters improve diplomatic relations, increasing reputation and support for claims."

@@ -1,0 +1,12 @@
+﻿l_russian:
+  # Локализации для дипломатических действий Power Blocks Expanded (исправлено для соответствия оригинальным ключам)
+  kates_foreign_investment_agreement_action_notification_name: "Инвестиционное соглашение"
+  kates_foreign_investment_agreement_action_notification_desc: "Предложение об инвестиционном соглашении от [COUNTRY.GetName]."
+  kates_foreign_investment_agreement_action_propose_name: "Предложить инвестиционное соглашение"
+  kates_foreign_investment_agreement_action_break_name: "Разорвать инвестиционное соглашение"
+  kates_foreign_investment_agreement_action_notification_break_name: "Разрыв инвестиционного соглашения"
+  kates_foreign_investment_agreement_action_notification_break_desc: "[COUNTRY.GetName] разорвал инвестиционное соглашение с нами."
+
+  # Локализации для взаимодействий персонажей и holy_war
+  zz_mr_pbe_holy_war_character_bonus_desc: "Персонажи влияют на священные войны, повышая поддержку требований и снижая стоимость дипломатических игр."
+  zz_mr_pbe_character_diplomacy_bonus_desc: "Персонажи улучшают дипломатические отношения, повышая репутацию и поддержку требований."

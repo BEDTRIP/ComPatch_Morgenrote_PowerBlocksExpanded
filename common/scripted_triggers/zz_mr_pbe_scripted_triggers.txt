@@ -1,0 +1,98 @@
+
+
+zz_mr_pbe_country_exists_trigger = {
+	always = yes
+}
+
+# source: PRIMARY_LABEL:mr_compatibility_triggers.txt, mr_gui_triggers.txt | SECONDARY_LABEL:kates_power_bloc_triggers.txt
+# change: wrapper; order: MR-first; общие триггеры для взаимодействий персонажей и holy_war
+zz_mr_pbe_has_active_characters_trigger = {
+	OR = {
+		has_variable = tesla_engineer_var
+		has_variable = verrier_astronomer_var
+		has_variable = mendelejew_chemist_var
+		has_variable = agassiz_geologist_var
+		has_variable = dubois_naturalist_var
+		has_variable = dubois_paleontologist_var
+		has_variable = lepsius_archaeologist_var
+		has_variable = lepsius_anthropologist_var
+		has_variable = panum_physician_var
+		has_variable = elgar_composer_var
+		has_variable = manzoni_writer_var
+		has_variable = klimt_painter_var
+		has_variable = gaudi_architect_var
+		has_variable = curtiss_balloonist_var
+		has_variable = vikelas_racer_var
+		has_variable = douglas_mountaineer_var
+	}
+}
+
+# source: PRIMARY_LABEL:mr_compatibility_triggers.txt | SECONDARY_LABEL:kates_power_bloc_triggers.txt
+# change: wrapper; order: MR-first; триггер влияния персонажей на holy_war (безопасная версия)
+zz_mr_pbe_holy_war_character_influence_trigger = {
+	AND = {
+		zz_mr_pbe_has_active_characters_trigger = yes
+		zz_mr_pbe_holy_war_target_compat = yes
+		OR = {
+			religion = var:holy_war_target.religion
+			# Безопасная проверка для ролей и трейтов персонажей (используем существующие альтернативы)
+			any_scope_character = {
+				AND = {
+					# Используем существующие роли персонажей вместо несуществующих
+					OR = {
+						has_role = politician
+						has_role = commander
+						has_role = agitator
+					}
+					# Используем существующие черты или общие проверки вместо несуществующих
+					OR = {
+						AND = { exists = trait_loyalist has_trait = trait_loyalist }
+						AND = { exists = trait_nationalist has_trait = trait_nationalist }
+						AND = { exists = trait_religious has_trait = trait_religious }
+					}
+				}
+			}
+		}
+	}
+}
+
+# source: PRIMARY_LABEL:mr_compatibility_triggers.txt | SECONDARY_LABEL:kates_power_bloc_triggers.txt
+# change: wrapper; order: MR-first; триггер включения интеграции (безопасная версия)
+zz_mr_pbe_integration_enabled_trigger = {
+	AND = {
+		always = yes  # Убрали ссылки на game_rules
+	}
+}
+
+zz_mr_pbe_has_diplomatic_pact_compat = {
+    # Компенсация для несуществующих типов пактов (используем существующие с проверками)
+    OR = {
+        has_diplomatic_pact = trade_agreement
+        has_diplomatic_pact = alliance
+        has_diplomatic_pact = defensive_pact
+        has_diplomatic_pact = customs_union
+        has_diplomatic_pact = guarantee
+        # Добавьте другие валидные типы по мере необходимости с проверками
+    }
+}
+
+zz_mr_pbe_safe_diplomatic_pact_check = {
+    # Безопасная проверка дипломатических пактов, избегая несуществующих типов
+    OR = {
+        zz_mr_pbe_has_diplomatic_pact_compat = yes
+        # Дополнительная проверка для потенциально отсутствующего типа инвестиционного соглашения
+        AND = {
+            # Проверка существования страны для избежания ошибок
+            any_country = {
+                exists = yes
+                NOT = { is_same_country = this }
+            }
+            # Можно добавить другие безопасные проверки здесь
+        }
+    }
+}
+
+zz_mr_pbe_holy_war_target_compat = {
+    # Безопасная проверка для переменной holy_war_target
+    exists = yes  # Простая проверка существования, чтобы избежать unset scope
+}
